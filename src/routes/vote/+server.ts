@@ -1,13 +1,11 @@
-import type { Proposal } from "eu-parliment-votes-sdk";
+import type { DocumentVote } from "eu-parliment-votes-sdk";
 // SvelteKit GET function that returns a single vote
 import type { RequestHandler } from "./$types";
-import { loadVoteWithMeps } from "eu-parliment-votes-sdk";
+import { getVotesFromRCV } from "eu-parliment-votes-sdk";
 
 export const GET: RequestHandler = async ({ url, platform }) => {
   const id = url.searchParams.get("id") ?? "";
-  let votes: Array<Proposal> = [];
-
-  votes = await loadVoteWithMeps(id);
+  let votes: DocumentVote[] = await getVotesFromRCV(id);
 
   // if (!platform) {
   // 	votes = await cacheFunction(loadVoteWithMeps, id);

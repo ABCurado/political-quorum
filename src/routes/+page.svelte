@@ -1,7 +1,3 @@
-<script>
-  import "tailwindcss/tailwind.css";
-</script>
-
 <main class="flex items-center justify-center h-screen">
   <div class="text-center">
     <h1 class="text-4xl font-bold mb-4">Political Quorum</h1>

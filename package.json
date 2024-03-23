@@ -43,7 +43,7 @@
 	"type": "module",
 	"dependencies": {
 		"@cloudflare/ai": "^1.0.50",
-		"eu-parliment-votes-sdk": "^1.7.0",
+		"eu-parliment-votes-sdk": "^1.8.0",
 		"html-to-image": "^1.11.11",
 		"mixpanel-browser": "^2.47.0",
 		"n3": "^1.17.1"

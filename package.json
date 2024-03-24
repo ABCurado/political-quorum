@@ -42,7 +42,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"eu-parliment-votes-sdk": "^1.9.7",
+		"eu-parliment-votes-sdk": "^1.9.8",
 		"html-to-image": "^1.11.11",
 		"mixpanel-browser": "^2.47.0",
 		"n3": "^1.17.1"

@@ -5,22 +5,20 @@ import { getVotesFromRCV } from "eu-parliment-votes-sdk";
 
 export const GET: RequestHandler = async ({ url, platform }) => {
   const id = url.searchParams.get("id") ?? "";
-  let votes: DocumentVote[] = await getVotesFromRCV(id);
 
-  // if (!platform) {
-  // 	votes = await cacheFunction(loadVoteWithMeps, id);
-  // } else {
-  // 	const cacheKey = `cache_${loadVoteWithMeps.name}_${JSON.stringify([id])}`;
-  // 	const obj = await platform.env.BUCKET.get(`eu-parliment-sdk/${cacheKey}`);
-  // 	votes = await (obj.body as Array<Proposal>);
-  // }
-  if (votes === null) {
-    return new Response(JSON.stringify({}), {
+  try {
+    let votes: DocumentVote[] = await getVotesFromRCV(id);
+
+    if (votes === null) {
+      throw new Error("No votes found");
+    }
+    return new Response(JSON.stringify(votes), {
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (e) {
+    return new Response(JSON.stringify(e), {
       headers: { "Content-Type": "application/json" },
       status: 500,
     });
   }
-  return new Response(JSON.stringify(votes), {
-    headers: { "Content-Type": "application/json" },
-  });
 };

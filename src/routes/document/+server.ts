@@ -2,6 +2,7 @@ import type { Document } from "eu-parliment-votes-sdk";
 // SvelteKit GET function that returns a single vote
 import type { RequestHandler } from "./$types";
 import { fetchAndParseDocument } from "eu-parliment-votes-sdk";
+import { summarizeDocument } from "eu-parliment-votes-sdk/dist/types/document";
 
 export const GET: RequestHandler = async ({ url, platform }) => {
   let id = url.searchParams.get("id") ?? "";
@@ -13,7 +14,7 @@ export const GET: RequestHandler = async ({ url, platform }) => {
   }
   id = id.replace(/([A-Z])(\d+)-(\d+)\/(\d+)/, "$1-$2-$4-$3");
   try {
-    let documents: Document = await fetchAndParseDocument(id);
+    let documents: Document = await fetchAndParseDocument(id, false);
 
     // if (!platform) {
     //     documents = await cacheFunction(fetchAndParseDocument, id);
